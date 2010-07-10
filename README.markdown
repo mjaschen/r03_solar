@@ -18,7 +18,11 @@ Installation
 Clone the repository into a folder named `r03` in your `source` directory:
 
     git clone git@github.com:mjaschen/r03_solar.git r03
-    
+
+Create the symlinks so that Solar can use the vendor classes:
+
+    ./script/solar link-vendor R03
+
 Enable the vendor by loading its config. Add this to your `config.php`:
 
     include("$system/source/r03/config/default.php");
