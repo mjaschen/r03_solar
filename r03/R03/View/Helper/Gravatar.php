@@ -52,9 +52,12 @@ class R03_View_Helper_Gravatar extends Solar_View_Helper
     public function gravatar($email, $options = array())
     {
         $hash = md5(strtolower(trim($email)));
+
         $default = $this->_config['default'];
         $size = $this->_config['size'];
         $rating = $this->_config['rating'];
+
+        // check options argument
 
         if (!empty($options['default'])) {
             $default = $options['default'];
@@ -67,6 +70,22 @@ class R03_View_Helper_Gravatar extends Solar_View_Helper
         if (!empty($options['rating'])) {
             $rating = $options['rating'];
         }
+
+        // validate options
+
+        if ((int) $size < 1 || (int) $size > 512) {
+            $size = $this->_R03_View_Helper_Gravatar['size'];
+        }
+
+        if (!in_array($rating, array('g', 'pg', 'r', 'x'))) {
+            $rating = $this->_R03_View_Helper_Gravatar['rating'];
+        }
+
+        if (!in_array($default, array('404', 'mm', 'identicon', 'monsterid', 'wavatar'))) {
+            $default = $this->_R03_View_Helper_Gravatar['default'];
+        }
+
+        // build img tag
 
         $url = "{$this->_config['href']}{$hash}?d={$default}&s={$size}&r={$rating}";
 
