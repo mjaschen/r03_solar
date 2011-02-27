@@ -54,35 +54,35 @@ class R03_View_Helper_Gravatar extends Solar_View_Helper
         $hash = md5(strtolower(trim($email)));
 
         $default = $this->_config['default'];
-        $size = $this->_config['size'];
-        $rating = $this->_config['rating'];
+        $size    = $this->_config['size'];
+        $rating  = $this->_config['rating'];
 
         // check options argument
 
-        if (!empty($options['default'])) {
+        if (! empty($options['default'])) {
             $default = $options['default'];
         }
 
-        if (!empty($options['size'])) {
+        if (! empty($options['size'])) {
             $size = $options['size'];
         }
 
-        if (!empty($options['rating'])) {
+        if (! empty($options['rating'])) {
             $rating = $options['rating'];
         }
 
         // validate options
 
         if ((int) $size < 1 || (int) $size > 512) {
-            $size = $this->_R03_View_Helper_Gravatar['size'];
+            $size = $this->_config['size'];
         }
 
-        if (!in_array($rating, array('g', 'pg', 'r', 'x'))) {
-            $rating = $this->_R03_View_Helper_Gravatar['rating'];
+        if (! in_array($rating, array('g', 'pg', 'r', 'x'))) {
+            $rating = $this->_config['rating'];
         }
 
-        if (!in_array($default, array('404', 'mm', 'identicon', 'monsterid', 'wavatar'))) {
-            $default = $this->_R03_View_Helper_Gravatar['default'];
+        if (! in_array($default, array('404', 'mm', 'identicon', 'monsterid', 'wavatar'))) {
+            $default = $this->_config['default'];
         }
 
         // build img tag
